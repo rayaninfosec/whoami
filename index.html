@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rayan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0b0c17;
+      --text: #c0c0c0;
+      --accent: #00ff99;
+      --green: #34d399;
+      --orange: #f59e0b;
+      --bluegray: #64748b;
+      --card-bg: #1c1f2a;
+      --primary-font: 'Fira Code', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--primary-font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      margin-top: 60px; /* Account for fixed navbar */
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(11, 12, 23, 0.95); /* Same as body background */
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 40vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1rem;
+      gap: 1rem;
+      background: var(--bg); /* Same as body */
+      color: #fff;
+    }
+
+    .terminal-line {
+      font-size: 1.8rem;
+      color: var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid var(--accent);
+      display: inline-block;
+    }
+
+    /* Section Titles */
+    section h2 {
+      font-size: 2.5rem;
+      color: var(--accent);
+      text-align: center;
+      margin: 2rem 0;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* About Me Card */
+    #about .card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 255, 153, 0.3);
+    }
+
+    #about p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 3rem auto;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--accent);
+      box-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
+      transition: 0.3s, box-shadow 0.3s;
+    }
+
+    .skill-card:hover {
+      box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
+      transform: translateY(-5px);
+    }
+
+    /* Certifications Timeline */
+    .cert-timeline {
+      position: relative;
+      margin: 3rem auto;
+      padding-left: 40px;
+      max-width: 700px;
+    }
+
+    .cert-timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .cert-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding: 0 1rem;
+      transition: transform 0.3s;
+    }
+
+    .cert-item:hover {
+      transform: translateX(5px);
+    }
+
+    .cert-node {
+      position: absolute;
+      left: -11px;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 15px var(--accent);
+      border: 3px solid var(--bg);
+    }
+
+    .cert-item.completed .cert-node {
+      background: var(--green);
+      box-shadow: 0 0 20px var(--green);
+    }
+
+    .cert-item.inprogress .cert-node {
+      background: var(--orange);
+      box-shadow: 0 0 20px var(--orange);
+    }
+
+    .cert-item.planned .cert-node {
+      background: var(--bluegray);
+      box-shadow: 0 0 20px var(--bluegray);
+    }
+
+    .cert-content {
+      background: var(--card-bg);
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 255, 153, 0.2);
+    }
+
+    .cert-content h3 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      text-align: center;
+      border-radius: 12px;
+      transition: 0.3s;
+      box-shadow: 0 4px 12px rgba(0, 255, 153, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .contact-card a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .contact-card a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px var(--accent);
+    }
+
+    .contact-card i {
+      font-size: 2.5rem;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      border-top: 1px solid #222;
+      margin-top: 4rem;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#certs">Certifications</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- Hero Section with Terminal Effect -->
+<section class="hero">
+  <div class="terminal-line" id="terminal"></div>
+</section>
+
+<!-- About Me -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="card">
+    <p>
+      Hi, I'm Rayan – a cybersecurity enthusiast with a deep passion for offensive security and red teaming. I specialize in identifying vulnerabilities, exploiting weaknesses, and securing systems. My ultimate goal is to become a highly skilled penetration tester, helping organizations safeguard their digital assets from evolving cyber threats.  
+    </p>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">Linux</div>
+    <div class="skill-card">Networking</div>
+    <div class="skill-card">Web App Security</div>
+    <div class="skill-card">Active Directory</div>
+    <div class="skill-card">Burp Suite</div>
+    <div class="skill-card">Metasploit</div>
+    <div class="skill-card">Wireshark</div>
+    <div class="skill-card">Threat Hunting</div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section id="certs">
+  <h2>Certifications</h2>
+  <div class="cert-timeline">
+    <div class="cert-item completed">
+      <div class="cert-node"></div>
+      <div class="cert-content">
+        <h3>eJPTv2 – Completed</h3>
+        <p>An entry-level, hands-on penetration testing certification that demonstrates proficiency in performing practical security assessments and identifying vulnerabilities in real-world environments</p>
+      </div>
+    </div>
+    <div class="cert-item completed">
+      <div class="cert-node"></div>
+      <div class="cert-content">
+        <h3>eCPPTv3 – Completed</h3>
+        <p>This certification exam assesses essential skills for modern penetration testing, including the ability to exploit vulnerabilities, gain initial access to systems, and conduct attacks on Active Directory environments.</p>
+      </div>
+    </div>
+    <div class="cert-item inprogress">
+      <div class="cert-node"></div>
+      <div class="cert-content">
+        <h3>eCTHP – In Progress</h3>
+        <p>Threat hunting & detection engineering.</p>
+      </div>
+    </div>
+    <div class="cert-item planned">
+      <div class="cert-node"></div>
+      <div class="cert-content">
+        <h3>CRTP – Planned</h3>
+        <p>Active Directory attacks </p>
+      </div>
+    </div>
+    <div class="cert-item planned">
+      <div class="cert-node"></div>
+      <div class="cert-content">
+        <h3>OSCP – Planned</h3>
+        <p>Gold standard in penetration testing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <a href="mailto:rayanalmalki.it@gmail.com">
+        <i class="fas fa-envelope"></i>
+        <p>EMAIL</p>
+      </a>
+    </div>
+    <div class="contact-card">
+      <a href="https://github.com/0xRayyan" target="_blank">
+        <i class="fab fa-github"></i>
+        <p>0xRayyan</p>
+      </a>
+    </div>
+    <div class="contact-card">
+      <a href="https://www.linkedin.com/in/rayan-almalki-499717331" target="_blank">
+        <i class="fab fa-linkedin"></i>
+        <p>LinkedIn</p>
+      </a>
+    </div>
+    <div class="contact-card">
+      <a href="https://x.com/Rayyan711x" target="_blank">
+        <i class="fab fa-x-twitter"></i>
+        <p>Rayyan711x</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 Rayan • Crafted with passion for cybersecurity
+</footer>
+
+<script>
+  const terminal = document.getElementById('terminal');
+  const texts = ["whoami$", "Rayan Almalki"];
+  let currentText = 0;
+  let charIndex = 0;
+  let typingSpeed = 150;
+  let erasingSpeed = 100;
+  let delay = 1000;
+
+  function type() {
+    if (charIndex < texts[currentText].length) {
+      terminal.textContent += texts[currentText].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, typingSpeed);
+    } else {
+      setTimeout(erase, delay);
+    }
+  }
+
+  function erase() {
+    if (charIndex > 0) {
+      terminal.textContent = texts[currentText].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(erase, erasingSpeed);
+    } else {
+      currentText = (currentText + 1) % texts.length;
+      setTimeout(type, 500);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    type();
+  });
+</script>
+
+</body>
+</html>
