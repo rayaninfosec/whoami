@@ -81,7 +81,6 @@
       display: inline-block;
     }
 
-  
     section h2 {
       font-size: 2.5rem;
       color: var(--accent);
@@ -90,7 +89,6 @@
       font-weight: 700;
       text-transform: uppercase;
     }
-
 
     #about .card {
       max-width: 800px;
@@ -107,7 +105,6 @@
       margin-bottom: 1.5rem;
     }
 
- 
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -200,6 +197,52 @@
       margin-bottom: 0.5rem;
     }
 
+    /* Tabs */
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: none;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tab-btn:hover {
+      background: var(--accent);
+      color: #0b0c17;
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #0b0c17;
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -245,7 +288,6 @@
       color: var(--accent);
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 2rem;
@@ -269,16 +311,15 @@
   <div class="terminal-line" id="terminal"></div>
 </section>
 
-<!-- About Me -->
 <section id="about">
   <h2>About Me</h2>
   <div class="card">
     <p>
-Hi, I’m Rayan — an IT security enthusiast with a strong passion for cybersecurity. I focus on identifying vulnerabilities, analyzing risks, and developing effective solutions to strengthen system defenses. My goal is to contribute to creating secure and resilient digital environments that protect organizations from evolving cyber threats    </p>
+      Hi, I’m Rayan — an IT security enthusiast with a strong passion for cybersecurity. I focus on identifying vulnerabilities, analyzing risks, and developing effective solutions to strengthen system defenses. My goal is to contribute to creating secure and resilient digital environments that protect organizations from evolving cyber threats.
+    </p>
   </div>
 </section>
 
-<!-- Skills -->
 <section id="skills">
   <h2>Skills</h2>
   <div class="skills-grid">
@@ -296,35 +337,46 @@ Hi, I’m Rayan — an IT security enthusiast with a strong passion for cybersec
 <!-- Certifications -->
 <section id="certs">
   <h2>Certifications</h2>
-  <div class="cert-timeline">
+
+  <div class="tab-buttons">
+    <button class="tab-btn active" data-target="cyber">Cybersecurity</button>
+    <button class="tab-btn" data-target="network">Networking</button>
+    <button class="tab-btn" data-target="system">System Administration</button>
+  </div>
+
+  <div class="cert-timeline tab-content active" id="cyber">
     <div class="cert-item completed">
       <div class="cert-node"></div>
       <div class="cert-content">
         <h3>eJPTv2 – Completed</h3>
-        <p>An entry-level, hands-on penetration testing certification that demonstrates proficiency in performing practical security assessments and identifying vulnerabilities in real-world environments</p>
+        <p>Junior Penetration Tester — a hands-on certification that validates foundational skills in penetration testing, including information gathering, vulnerability analysis, and exploitation across real-world network and web environments.</p>
       </div>
     </div>
+
     <div class="cert-item completed">
       <div class="cert-node"></div>
       <div class="cert-content">
         <h3>eCPPTv3 – Completed</h3>
-        <p>This certification exam assesses essential skills for modern penetration testing, including the ability to exploit vulnerabilities, gain initial access to systems, and conduct attacks on Active Directory environments.</p>
+        <p>Certified Professional Penetration Tester — an advanced-level certification focused on realistic enterprise attacks. It demonstrates strong proficiency in exploitation, privilege escalation, pivoting, and post-exploitation across complex infrastructures such as Active Directory and web applications.</p>
       </div>
     </div>
+
     <div class="cert-item inprogress">
       <div class="cert-node"></div>
       <div class="cert-content">
-        <h3>eWPT – In Progress</h3>
-        <p> Web Application Penetration Testing Professional </p>
+        <h3>eCTHP – In Progress</h3>
+        <p>Certified Threat Hunting Professional — focuses on detecting, analyzing, and responding to cyber threats using proactive threat hunting methodologies and tools.</p>
       </div>
     </div>
+
     <div class="cert-item planned">
       <div class="cert-node"></div>
       <div class="cert-content">
         <h3>CRTP – Planned</h3>
-        <p>Active Directory attacks </p>
+        <p>Active Directory attacks.</p>
       </div>
     </div>
+
     <div class="cert-item planned">
       <div class="cert-node"></div>
       <div class="cert-content">
@@ -333,8 +385,27 @@ Hi, I’m Rayan — an IT security enthusiast with a strong passion for cybersec
       </div>
     </div>
   </div>
-</section>
 
+  <div class="cert-timeline tab-content" id="network">
+    <div class="cert-item inprogress">
+      <div class="cert-node"></div>
+      <div class="cert-content">
+        <h3>CCNA – In Progress</h3>
+        <p>Cisco Certified Network Associate — focuses on networking fundamentals, IP connectivity, and essential network security concepts.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cert-timeline tab-content" id="system">
+    <div class="cert-item inprogress">
+      <div class="cert-node"></div>
+      <div class="cert-content">
+        <h3>RHCSA – In Progress</h3>
+        <p>Red Hat Certified System Administrator — covers Linux system management, user and process control, and basic security configuration.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="contact">
   <h2>Social & Contact</h2>
@@ -365,10 +436,6 @@ Hi, I’m Rayan — an IT security enthusiast with a strong passion for cybersec
     </div>
   </div>
 </section>
-
-
-
-
 
 <footer>
   &copy; 2025 Rayan 
@@ -407,12 +474,19 @@ Hi, I’m Rayan — an IT security enthusiast with a strong passion for cybersec
   document.addEventListener("DOMContentLoaded", function () {
     type();
   });
+
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
 </script>
 
 </body>
 </html>
-
-
-
-
-
