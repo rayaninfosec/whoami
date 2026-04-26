@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>R. Almalki // Pentest</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;800&display=swap" rel="stylesheet">
 <style>
     :root {
@@ -25,12 +28,10 @@
 
     .container { max-width: 650px; margin: 0 auto; }
 
-    /* --- HEADER --- */
     header { margin-bottom: 5rem; }
     .name { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
     .role { font-family: 'Space Mono', monospace; color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; }
 
-    /* --- SECTIONING --- */
     section { margin-bottom: 4rem; }
     h2 { 
         font-size: 0.75rem; 
@@ -43,7 +44,6 @@
         margin-bottom: 1.5rem;
     }
 
-    /* --- LISTS --- */
     .item { margin-bottom: 1.5rem; }
     .item-title { font-weight: 700; font-size: 1.1rem; }
     .item-desc { color: var(--dim); font-size: 0.95rem; }
@@ -57,15 +57,30 @@
         font-weight: 400;
     }
     .badge.active { background: var(--accent); color: #fff; }
-    .badge.soon { border: 1px solid var(--accent); color: var(--accent); background: transparent; }
 
-    /* --- CONTACT TABLE --- */
+    /* --- 2. MISSING ICON STYLES ADDED BELOW --- */
     .contact-table { width: 100%; border-collapse: collapse; }
-    .contact-table td { padding: 0.8rem 0; border-bottom: 1px solid var(--border); }
-    .label-col { color: var(--dim); font-family: 'Space Mono', monospace; font-size: 0.85rem; width: 30%; }
-    .link-col a, .link-col span { color: var(--text); text-decoration: none; font-weight: 700; border-bottom: 1px solid transparent; transition: 0.2s; }
-    .link-col a:hover { border-bottom: 1px solid var(--text); }
-    .status-msg { font-size: 0.75rem; font-weight: 400; color: var(--accent); margin-left: 10px; }
+    .contact-table td { border-bottom: 1px solid var(--border); }
+    
+    .contact-link { 
+        display: flex; 
+        align-items: center; 
+        gap: 15px; 
+        padding: 1.2rem 0;
+        color: var(--text); 
+        text-decoration: none; 
+        font-family: 'Space Mono', monospace;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        transition: 0.2s;
+    }
+
+    .contact-link i { width: 20px; text-align: center; color: var(--dim); transition: 0.2s; }
+    .contact-link:hover { color: var(--accent); padding-left: 5px; }
+    .contact-link:hover i { color: var(--accent); }
+
+    .coming-soon { opacity: 0.4; cursor: not-allowed; }
 
     @media (max-width: 600px) {
         body { padding: 2rem 1.5rem; }
@@ -98,7 +113,7 @@
         <h2>Roadmap & Objectives</h2>
         <div class="item">
             <div class="item-title">CRTP <span class="badge active">Planned</span></div>
-            <p class="item-desc">Certified Red Team Professional — Active Directory exploitation and lateral movement.</p>
+            <p class="item-desc">Certified Red Team Professional — Active Directory Focus.</p>
         </div>
         <div class="item">
             <div class="item-title">OSCP <span class="badge active">Planned</span></div>
@@ -106,7 +121,7 @@
         </div>
     </section>
 
-     <section>
+    <section>
         <h2>Communication & Verification</h2>
         <table class="contact-table">
             <tr>
@@ -137,7 +152,6 @@
                     </a>
                 </td>
             </tr>
-       </tr>
             <tr>
                 <td>
                     <div class="contact-link coming-soon">
@@ -149,7 +163,7 @@
     </section>
 
     <footer style="margin-top: 8rem; font-size: 0.7rem; color: var(--dim); font-family: 'Space Mono', monospace;">
-        &copy; 2026 R_ALMALKI // 
+        &copy; 2026 R_ALMALKI // OFFENSIVE_REPORTS
     </footer>
 </div>
 
